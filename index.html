@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Code Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">Java Code Library</h1>
+            <p class="header__subtitle">18 Essential Java Programs - Copy & Use</p>
+        </header>
+
+        <div class="search-section">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Search programs by title or content..."
+                autocomplete="off"
+            >
+            <div class="search-results-count">
+                <span id="resultsCount">18</span> programs found
+            </div>
+        </div>
+
+        <main class="programs-container" id="programsContainer">
+            <!-- Programs will be dynamically inserted here -->
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Java Code Library. All programs are ready to compile and run.</p>
+        </footer>
+    </div>
+
+    <!-- Copy notification -->
+    <div id="copyNotification" class="copy-notification hidden">
+        <div class="copy-notification__content">
+            <span class="copy-notification__text">Code copied to clipboard!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
