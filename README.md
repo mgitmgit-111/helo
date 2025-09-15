@@ -1,9 +1,3 @@
-# helo
-Got it 👍
-I’ll give you **Java solutions for all 18 programs** in a clear and complete way.
-Each program is self-contained (you can copy–paste and run directly).
-
----
 
 ## **1. Fibonacci Series up till a given number**
 
@@ -480,8 +474,3 @@ public class FinalDemo {
 }
 ```
 
----
-
-✅ All 18 programs are now covered in **Java**.
-
-Do you want me to **combine them into one single file with a menu system** (so you can run all from one program), or keep them as **separate individual files**?
