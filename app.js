@@ -19,7 +19,38 @@ const programs = [
   { "id": 17, "title": "Static Members", "code": "class StaticDemo {\n static int count = 0;\n int id;\n\n StaticDemo(int id) {\n this.id = id;\n count++;\n }\n\n static void showCount() {\n System.out.println(\"Count = \" + count);\n // Cannot access 'id' here (non-static)\n }\n\n void showId() {\n System.out.println(\"ID = \" + id);\n System.out.println(\"Static count accessible: \" + count);\n }\n}\n\npublic class StaticTest {\n public static void main(String[] args) {\n StaticDemo d1 = new StaticDemo(1);\n StaticDemo d2 = new StaticDemo(2);\n\n d1.showId();\n StaticDemo.showCount();\n System.out.println(\"Accessing static from outside: \" + StaticDemo.count);\n }\n}" },
   { "id": 18, "title": "Final Keyword", "code": "final class FinalClass {\n final int x = 10;\n final void display() { System.out.println(\"Final method in final class\"); }\n}\n\n// class Child extends FinalClass {} // Not allowed\n\nclass Demo {\n final int y;\n Demo(int val) { y = val; }\n}\n\npublic class FinalDemo {\n public static void main(String[] args) {\n FinalClass f = new FinalClass();\n f.display();\n Demo d = new Demo(100);\n System.out.println(\"Final variable y = \" + d.y);\n }\n}" },
   { "id": 19, "title": "Mouse Events (AWT Frame)", "code": "import java.awt.*;\nimport java.awt.event.*;\n\npublic class MouseEventsDemo extends Frame implements MouseListener, MouseMotionListener {\n Label l;\n public MouseEventsDemo() {\n super(\"Mouse Events Demo\");\n setSize(400,200);\n setLayout(new FlowLayout());\n l = new Label(\"No event\");\n add(l);\n addMouseListener(this);\n addMouseMotionListener(this);\n addWindowListener(new WindowAdapter() {\n public void windowClosing(WindowEvent e) {\n dispose();\n System.exit(0);\n }\n });\n setVisible(true);\n }\n public void mouseClicked(MouseEvent e) { l.setText(\"Clicked at \"+e.getX()+\",\"+e.getY()); }\n public void mousePressed(MouseEvent e) { l.setText(\"Pressed at \"+e.getX()+\",\"+e.getY()); }\n public void mouseReleased(MouseEvent e) { l.setText(\"Released at \"+e.getX()+\",\"+e.getY()); }\n public void mouseEntered(MouseEvent e) { l.setText(\"Mouse entered\"); }\n public void mouseExited(MouseEvent e) { l.setText(\"Mouse exited\"); }\n public void mouseDragged(MouseEvent e) { l.setText(\"Dragged at \"+e.getX()+\",\"+e.getY()); }\n public void mouseMoved(MouseEvent e) { l.setText(\"Moved at \"+e.getX()+\",\"+e.getY()); }\n public static void main(String[] a) { new MouseEventsDemo(); }\n}" },
-  { "id": 20, "title": "Factorial Applet (Swing JFrame)", "code": "import javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.*;\n\npublic class FactorialApplet extends JFrame implements ActionListener {\n JTextField input, output;\n JButton compute;\n public FactorialApplet() {\n super(\"Factorial\");\n setLayout(new FlowLayout());\n add(new JLabel(\"Number:\"));\n input = new JTextField(10);\n add(input);\n compute = new JButton(\"Compute\");\n compute.addActionListener(this);\n add(compute);\n add(new JLabel(\"Factorial:\"));\n output = new JTextField(20);\n output.setEditable(false);\n add(output);\n setDefaultCloseOperation(EXIT_ON_CLOSE);\n pack();\n setLocationRelativeTo(null);\n setVisible(true);\n }\n public void actionPerformed(ActionEvent e) {\n try {\n long n = Long.parseLong(input.getText());\n if (n < 0) {\n output.setText(\"Undefined\");\n return;\n }\n long f = 1;\n for (long i = 2; i <= n; i++) f *= i;\n output.setText(String.valueOf(f));\n } catch (Exception ex) {\n output.setText(\"Error\");\n }\n }\n public static void main(String[] args) {\n new FactorialApplet();\n }\n}" },
+  {
+  id: 20,
+  title: "Factorial Applet (AWT Applet)",
+  code: `import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+
+public class FactorialApplet extends Applet implements ActionListener {
+    TextField t1, t2;
+    Button b;
+
+    public void init() {
+        t1 = new TextField(5);
+        t2 = new TextField(20);
+        b = new Button("Compute");
+        add(t1);
+        add(b);
+        add(t2);
+        b.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        int n = Integer.parseInt(t1.getText());
+        int f = 1;
+        for (int i = 1; i <= n; i++) {
+            f *= i;
+        }
+        t2.setText("Factorial is: " + f);
+    }
+}`
+}
+
   { "id": 21, "title": "Table using Labels", "code": "import javax.swing.*; \nimport java.awt.*;\n\nclass TableLabels{\n public static void main(String[] a){\n JFrame f=new JFrame(); \n JPanel p=new JPanel(new GridLayout(3,3));\n for(int i=1;i<=9;i++) p.add(new JLabel(\"C\"+i));\n f.add(p); \n f.pack(); \n f.setVisible(true); \n f.setDefaultCloseOperation(3);\n }\n}" },
   { "id": 22, "title": "Simple Message", "code": "import javax.swing.*; \nimport java.awt.*;\n\nclass SimpleMessage extends JFrame{\n SimpleMessage(){ \n setSize(250,120); \n setVisible(true); \n setDefaultCloseOperation(3); \n }\n public void paint(Graphics g){ \n super.paint(g); \n g.drawString(\"Hello!\",80,80); \n }\n public static void main(String[] a){\n new SimpleMessage();\n }\n}" },
   { "id": 23, "title": "Parameters Example", "code": "import javax.swing.*; \nimport java.awt.*;\n\nclass ParamsDemo extends JFrame{\n String s;\n ParamsDemo(String m){ \n s=m; \n setSize(250,120); \n setVisible(true); \n setDefaultCloseOperation(3);\n }\n public void paint(Graphics g){\n super.paint(g); \n g.drawString(s,80,80);\n }\n public static void main(String[] a){\n new ParamsDemo(a.length>0?a[0]:\"No param\");\n }\n}" },
